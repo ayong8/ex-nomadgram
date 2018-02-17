@@ -3,7 +3,9 @@ from rest_framework.response import Response
 from . import models, serializers
 
 class ListAllImages(APIView):
+    # 사용한 http request에 따라 각기 다른 function을 사용
 
+    # get method
     def get(self, request, format=None):
         all_images = models.Image.objects.all() # Go and get all images
         # all_images는 그냥 파이썬 오브젝트일 뿐이므로 json으로 바꿔야 한다
