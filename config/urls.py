@@ -4,6 +4,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
+from nomadgram import views
 
 urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
@@ -16,7 +17,8 @@ urlpatterns = [
     url(r'^users/', include('nomadgram.users.urls', namespace='users')),
     url(r'^images/', include('nomadgram.images.urls', namespace='images')),
     url(r'^accounts/', include('allauth.urls')),
-
+    # catch-all url: If all urls above don't have a match, it ends up coming here
+    url(r'^', views.ReactAppView.as_view()),
     # Your stuff: custom urls includes go here
 
 
