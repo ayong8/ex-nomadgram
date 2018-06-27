@@ -14,3 +14,27 @@ class ListAllImages(APIView):
 
         # data는 serializer.data에 저장되어 있음
         return Response(data=serializer.data)
+
+class ListAllComments(APIView):
+    # 사용한 http request에 따라 각기 다른 function을 사용
+
+    # get method
+    def get(self, request, format=None):
+        print(request.user)
+        all_comments = models.Comment.objects.all()
+        serializer = serializers.CommentSerializer(all_comments, many=True)
+
+        # data는 serializer.data에 저장되어 있음
+        return Response(data=serializer.data)
+
+
+class ListAllLikes(APIView):
+    # 사용한 http request에 따라 각기 다른 function을 사용
+
+    # get method
+    def get(self, request, format=None):
+        all_likes = models.Like.objects.all()
+        serializer = serializers.LikeSerializer(all_likes, many=True)
+
+        # data는 serializer.data에 저장되어 있음
+        return Response(data=serializer.data)

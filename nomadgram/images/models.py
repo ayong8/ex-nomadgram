@@ -14,6 +14,7 @@ class Image(TimeStampedModel):
 	location = models.CharField(max_length=140)
 	caption = models.TextField()
 	creator = models.ForeignKey(user_models.User, null=True)
+    # Look in all the comments that have this image id
 
 	def __str__(self):
 		# string의 형식(representation)이 어떻게 보일 것인가 ... seoul - captial of korea (값 사이에 짝대기를 넣는다)
